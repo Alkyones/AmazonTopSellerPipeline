@@ -135,7 +135,8 @@ def getScrapedDataFromLinks(driver, DB, url_base, credentials, links):
 def scrapeData(DB, credentials, url_base):
     os.system('cls' if os.name=='nt' else 'clear')
     url = f"{url_base}/Best-Sellers/zgbs"
-
+    if url_base == "https://www.amazon.com.tr":
+        url = f"{url_base}/gp/bestsellers"
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     driver = webdriver.Chrome()
