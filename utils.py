@@ -50,6 +50,7 @@ def getCountryWebsite(base_urls,countryCode):
     return False
 
 def findPrice(item):
+
     if(item.find("span", {"class": "a-color-price"})):
         price = item.find("span", {"class": "a-color-price"}).text
         return price
@@ -58,6 +59,12 @@ def findPrice(item):
         price = item.select('span[class*="sc-price"]')[0].text
         return price
     
+    if(item.find("span", {"class": "a-color-secondary"})):
+        priceTextsRaw = item.find("span", {"class": "a-color-secondary"})               
+        price = priceTextsRaw.text
+        
+        return price
+
     return None
 
 def getLinksFromList(data):
@@ -134,8 +141,9 @@ def getScrapedDataFromLinks(driver, DB, url_base, credentials, links):
 
 def scrapeData(DB, credentials, url_base):
     os.system('cls' if os.name=='nt' else 'clear')
-    url = f"{url_base}/Best-Sellers/zgbs"
-    if url_base == "https://www.amazon.com.tr":
+    if url_base == "https://www.amazon.co.uk":
+        url = f"{url_base}/Best-Sellers/zgbs"
+    else:
         url = f"{url_base}/gp/bestsellers"
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
