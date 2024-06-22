@@ -111,7 +111,7 @@ def getScrapedDataFromLinks(driver, DB, url_base, credentials, links):
                 pass
 
         if title:
-            print("title: " + title, " url:", link)
+            print("title: " + title)
             items = soup.find_all("div", {"id": "gridItemRoot"})
             for item in items:
                 spans = item.find_all("span")
