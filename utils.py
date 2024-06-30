@@ -147,7 +147,7 @@ def scrapeData(DB, credentials, url_base):
         url = f"{url_base}/gp/bestsellers"
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=options)
     driver.get(url)
     driver.implicitly_wait(2)
 
